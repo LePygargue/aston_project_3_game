@@ -1,6 +1,7 @@
 // frontend/src/components/Login.js
 import React, { useState } from 'react';
-import api from '../services/api';
+import { Link } from 'react-router-dom';
+import api from '../../../services/api';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -23,7 +24,6 @@ const Login = () => {
     }
   };
   
-
   return (
     <div>
       <h2>Login</h2>
@@ -40,6 +40,9 @@ const Login = () => {
         <br />
         <button type="submit">Login</button>
       </form>
+      <p>
+        Pas encore de compte ? <Link to="/authentication/register">Inscrivez-vous ici</Link>.
+      </p>
     </div>
   );
 };
