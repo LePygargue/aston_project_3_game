@@ -3,6 +3,10 @@ import './App.css';
 import { React} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Authentication from './features/authentication/index';
+import './App.css';
+import { React} from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Authentication from './features/authentication/index';
 
 const App = () => {
   return (
