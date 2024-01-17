@@ -1,0 +1,31 @@
+{
+    "events": [
+      {
+        "event_id": 1,
+        "event_name": "Event 1",
+        "conditions": [
+          {
+            "type": "character_level",
+            "operator": ">=",
+            "value": 10
+          },
+          {
+            "type": "location_id",
+            "operator": "=",
+            "value": 3
+          },
+          {
+            "type": "inventory_contains_item",
+            "item_name": "Sword"
+          }
+        ]
+      },
+      {
+        "event_id": 2,
+        "event_name": "Event 2",
+        "conditions": [
+        ]
+      }
+    ]
+  }
+  

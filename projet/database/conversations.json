@@ -1,0 +1,34 @@
+{
+    "dialogues": [
+      {
+        "type": "player",
+        "text": "Hello! How are you?",
+        "options": [
+          {
+            "text": "I'm good, thank you.",
+            "response": "Glad to hear that!"
+          },
+          {
+            "text": "Not great, actually.",
+            "response": "Oh no, what happened?"
+          }
+        ]
+      },
+      {
+        "type": "pnj",
+        "text": "Greetings, adventurer! What brings you to my domain?",
+        "options": [
+          {
+            "text": "I seek information about a quest.",
+            "response": "Ah, you're on a quest! Let me help you with that."
+          },
+          {
+            "text": "Just passing through.",
+            "response": "Well, feel free to explore. If you need anything, I'll be here."
+          }
+        ]
+      }
+      // ... d'autres dialogues
+    ]
+  }
+  
