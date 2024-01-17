@@ -1,16 +1,29 @@
 // frontend/src/App.js
-import React from 'react';
-import Login from './components/Login';
-import Register from './components/Register';
+import { React} from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Authentication from './features/authentication/index';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Login />
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/authentication">Authentication</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/authentication/*" element={<Authentication />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

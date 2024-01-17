@@ -1,6 +1,7 @@
 // frontend/src/components/Register.js
 import React, { useState } from 'react';
-import api from '../services/api';
+import { Link } from 'react-router-dom';
+import api from '../../../services/api';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -62,6 +63,9 @@ const Register = () => {
         <br />
         <button type="submit">Register</button>
       </form>
+      <p>
+        Déjà un compte ? <Link to="/authentication/login">Connectez-vous ici</Link>.
+      </p>
     </div>
   );
 };
