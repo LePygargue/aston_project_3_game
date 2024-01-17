@@ -1,26 +1,39 @@
-// backend/routes/users.js
-const express = require('express');
+// /backend/src/controllers/userController.js
 const bcrypt = require('bcrypt');
-const db = require('../db');
+const db = require('../config/database');
 
-const router = express.Router();
+const getAllUsers = async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des utilisateurs', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
-// Route pour créer un nouvel utilisateur
-router.post('/register', async (req, res) => {
+const getAllAdmins = async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM users WHERE user_is_admin = true');
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des utilisateurs', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
+const createUser = async (req, res) => {
   const { username, password, email, firstName, lastName } = req.body;
 
   try {
-    // Vérifiez si l'utilisateur existe déjà
     const userExists = await db.query('SELECT * FROM users WHERE user_username = $1', [username]);
 
     if (userExists.rows.length > 0) {
       return res.status(400).json({ error: 'L\'utilisateur existe déjà' });
     }
 
-    // Hachez le mot de passe avant de le stocker dans la base de données
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insérez le nouvel utilisateur dans la base de données
     const result = await db.query(
       'INSERT INTO users (user_username, user_password, user_email, user_first_name, user_last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
       [username, hashedPassword, email, firstName, lastName]
@@ -31,9 +44,9 @@ router.post('/register', async (req, res) => {
     console.error('Erreur lors de la création de l\'utilisateur', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
+};
 
-router.post('/login', async (req, res) => {
+const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -56,6 +69,11 @@ router.post('/login', async (req, res) => {
     console.error('Error during login', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getAllUsers,
+  getAllAdmins,
+  createUser,
+  loginUser,
+};
