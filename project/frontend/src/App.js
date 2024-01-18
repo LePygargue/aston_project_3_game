@@ -1,29 +1,26 @@
-// frontend/src/App.js
-import './App.css';
-import { React} from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Authentication from './features/authentication/index';
-import './App.css';
+// /frontend/src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthenticationPage from './features/authentication';
+import HomePage from './components/HomePage';
+import MainLayout from './layouts/MainLayout';
 
 const App = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/authentication">Authentication</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Routes>
-          <Route path="/authentication/*" element={<Authentication />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <MainLayout>
+              <Routes>
+                <Route path="/authentication/*" element={<AuthenticationPage />} />
+                <Route path="/" element={<HomePage />} />
+              </Routes>
+            </MainLayout>
+          }
+        />
+      </Routes>
     </Router>
   );
 };
