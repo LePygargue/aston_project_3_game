@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthenticationPage from './features/authentication';
-import HomePage from './components/HomePage';
+import HomePage from './pages/HomePage';
 import MainLayout from './layouts/MainLayout';
 
 const App = () => {
