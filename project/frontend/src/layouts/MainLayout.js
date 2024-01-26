@@ -1,13 +1,13 @@
 // /frontend/src/layouts/MainLayout.js
-import React from 'react';
-import Header from './Header';
+import React from "react";
+import Header from "../components/Header";
 
 const MainLayout = ({ children }) => {
   return (
     <div>
       <Header />
       <main>{children}</main>
-      {/* Ajoutez d'autres éléments de mise en page ici si nécessaire */}
+      {/* <Footer /> */}
     </div>
   );
 };
