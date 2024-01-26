@@ -1,7 +1,7 @@
 // /frontend/src/features/authentication/index.js
 import React from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
+import Login from '../features/';
 import Register from './components/Register';
 
 const AuthenticationPage = () => {

@@ -1,23 +1,23 @@
-// /frontend/src/context/AuthContext.js
-import { createContext, useContext, useState } from 'react';
+// context/AuthContext.js
+import { createContext, useState, useContext } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const login = () => {
-    // Logique d'authentification (par exemple, appel à une API)
-    setAuthenticated(true);
+  const login = (userData) => {
+    // Logique de connexion
+    setUser(userData);
   };
 
   const logout = () => {
     // Logique de déconnexion
-    setAuthenticated(false);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

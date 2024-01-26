@@ -1,22 +1,21 @@
 // /frontend/src/layouts/SpecialLayout.js
 /*
-* Author : Thierry Maurouzel
-* Description : Main Layout for the game part of the site
-* Last update : 
-*/
+ * Author : Thierry Maurouzel
+ * Description : Main Layout for the game part of the site
+ * Last update :
+ */
 
-import React from 'react';
+import React from "react";
 // import SpecialHeader from './SpecialHeader';
 //
 
-const SpecialLayout = ({ children }) => {
+const GameLayout = ({ children }) => {
   return (
     <div>
-      <SpecialHeader />
-      <main>{children}</main>
+      <p>TESTETSTETS</p>
       {/* Ajoutez d'autres éléments de mise en page spéciale ici si nécessaire */}
     </div>
   );
 };
 
-export default SpecialLayout;
+export default GameLayout;
