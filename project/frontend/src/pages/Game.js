@@ -3,11 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./HomePage.css"; // Importez les styles
 
-const HomePage = () => {
+const HomeGame = () => {
   return (
     <div className="home-page">
-      <h1>Bienvenue dans Mon Jeu</h1>
-      <p>Explorez, jouez et amusez-vous!</p>
+      <h1>VOUS ETES ACTUELLEMENT DANS LE JEU</h1>
+      <p>VOUS ETES ACTUELLEMENT DANS LE JEU!</p>
 
       <div className="game-preview">
         <h2>Aperçu du Jeu</h2>
@@ -15,18 +15,15 @@ const HomePage = () => {
       </div>
 
       <div className="cta-buttons">
-        <Link to="/play" className="btn btn-primary">
-          Jouer Maintenant
+        <Link to="/" className="btn btn-primary">
+          Retour à l'accueil
         </Link>
         <Link to="/leaderboard" className="btn btn-secondary">
           Classement
-        </Link>
-        <Link to="/game" className="btn btn-secondary">
-          Jouer
         </Link>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default HomeGame;

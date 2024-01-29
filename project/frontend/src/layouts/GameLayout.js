@@ -6,14 +6,15 @@
  */
 
 import React from "react";
+import GameLeftMenu from "../components/ui/GameLeftMenu";
 // import SpecialHeader from './SpecialHeader';
 //
 
 const GameLayout = ({ children }) => {
   return (
     <div>
-      <p>TESTETSTETS</p>
-      {/* Ajoutez d'autres éléments de mise en page spéciale ici si nécessaire */}
+      <GameLeftMenu />
+      <main>{children}</main>
     </div>
   );
 };

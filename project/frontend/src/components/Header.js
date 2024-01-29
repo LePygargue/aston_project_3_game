@@ -1,7 +1,7 @@
 // /frontend/src/layouts/Header.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css'; // Importez les styles
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css"; // Importez les styles
 
 const Header = () => {
   return (
@@ -13,6 +13,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/authentication">Authentication</Link>
+          </li>
+          <li>
+            <Link to="/game">Jouer</Link>
           </li>
           {/* Ajoutez d'autres liens de navigation selon vos besoins */}
         </ul>

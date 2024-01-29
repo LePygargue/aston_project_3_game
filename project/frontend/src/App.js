@@ -1,13 +1,15 @@
 // /frontend/src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import AuthenticationPage from "./features/authentication";
 import HomePage from "./pages/HomePage";
+import HomeGame from "./pages/Game";
 import MainLayout from "./layouts/MainLayout";
+import GameLayout from "./layouts/GameLayout";
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route
           path="/*"
@@ -23,8 +25,18 @@ const App = () => {
             </MainLayout>
           }
         />
+        <Route
+          path="/game/*"
+          element={
+            <GameLayout>
+              <Routes>
+                <Route path="/" element={<HomeGame />} />
+              </Routes>
+            </GameLayout>
+          }
+        />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
