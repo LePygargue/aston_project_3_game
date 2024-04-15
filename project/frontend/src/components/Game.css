@@ -1,0 +1,135 @@
+.game__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)),
+    url("@/assets/home-bg-1.png");
+}
+
+.game__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 15%;
+}
+
+.game__header__options {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+
+.game__header__options ul {
+  display: flex;
+  margin-right: 50px;
+  gap: 30px;
+}
+
+.game__header__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.game {
+  display: flex;
+
+  height: 100%;
+  margin: 0px 50px 50px 50px
+}
+
+.game__leftMenu {
+  display: flex;
+  margin-right: 50px;
+  width: 15%;
+  height: 100%;
+}
+
+.game__leftMenu__buttons {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.haut {
+  display: flex;
+  flex-direction: column;
+}
+
+.haut li:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.leftMenu__buttons-style {
+  display: flex;
+  justify-content: center;
+  padding: 50px 50px;
+  font-size: 30px;
+  cursor: pointer;
+  border: solid 1px #A5802F;
+  color: white;
+  background: rgb(63, 49, 18);
+  background: linear-gradient(0deg, rgba(63, 49, 18, 1) 0%, rgba(165, 128, 47, 0.3) 80%);
+}
+
+.leftMenu__buttons-style-last {
+  display: flex;
+  justify-content: center;
+  padding: 90px 50px;
+  font-size: 30px;
+  border: solid 1px #A5802F;
+  color: white;
+  background: rgb(63, 49, 18);
+  background: linear-gradient(0deg, rgba(63, 49, 18, 1) 0%, rgba(165, 128, 47, 0.3) 80%);
+}
+
+
+.game__screen {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #A5802F;
+  width: 85%;
+  height: 100%;
+}
+
+.game__screen_location {
+  display: flex;
+  width: 100%;
+  height: 80%;
+}
+
+.game__screen_interface {
+  display: flex;
+  border-top: solid 1px #A5802F;
+  width: 100%;
+  height: 20%;
+}
+
+.interface__image {
+  display: flex;
+  border-right: solid 1px #A5802F;
+  width: 12%;
+  height: 100%;
+  background:
+    url("@/assets/Tommy_Angelo.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.interface__text {
+  display: flex;
+  width: 88%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}

@@ -1,79 +1,92 @@
 // /backend/src/controllers/userController.js
-const bcrypt = require('bcrypt');
-const db = require('../config/database');
+
+const db = require("../config/db");
 
 const getAllUsers = async (req, res) => {
-  try {
-    const result = await db.query('SELECT * FROM users');
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Erreur lors de la récupération des utilisateurs', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+    try {
+        const result = await db.query("SELECT * FROM users");
+        res.json(result.rows);
+    } catch (error) {
+        console.error("Erreur lors de la récupération des utilisateurs", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 };
 
 const getAllAdmins = async (req, res) => {
     try {
-      const result = await db.query('SELECT * FROM users WHERE user_is_admin = true');
-      res.json(result.rows);
+        const result = await db.query(
+            "SELECT * FROM users WHERE user_is_admin = true"
+        );
+        res.json(result.rows);
     } catch (error) {
-      console.error('Erreur lors de la récupération des utilisateurs', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error("Erreur lors de la récupération des utilisateurs", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-  };
-
-const createUser = async (req, res) => {
-  const { username, password, email, firstName, lastName } = req.body;
-
-  try {
-    const userExists = await db.query('SELECT * FROM users WHERE user_username = $1', [username]);
-
-    if (userExists.rows.length > 0) {
-      return res.status(400).json({ error: 'L\'utilisateur existe déjà' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const result = await db.query(
-      'INSERT INTO users (user_username, user_password, user_email, user_first_name, user_last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [username, hashedPassword, email, firstName, lastName]
-    );
-
-    res.json({ message: 'Utilisateur créé avec succès', user: result.rows[0] });
-  } catch (error) {
-    console.error('Erreur lors de la création de l\'utilisateur', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
 };
 
-const loginUser = async (req, res) => {
-  const { username, password } = req.body;
+const updateUser = async (req, res) => {
+    const { username, password, email, firstName, lastName } = req.body;
+};
 
-  try {
-    const result = await db.query('SELECT * FROM users WHERE user_username = $1', [username]);
+const deleteUser = async (req, res) => {
+    const { id } = req.body; // Supposons qu'on utilise un identifiant unique `id` pour supprimer un utilisateur
 
-    if (result.rows.length === 0) {
-      return res.status(401).json({ error: 'Invalid username or password' });
+    try {
+        const userExists = await db.query(
+            "SELECT * FROM users WHERE user_id = $1",
+            [id]
+        );
+
+        if (userExists.rows.length === 0) {
+            return res
+                .status(404)
+                .json({ error: "L'utilisateur n'existe pas" });
+        }
+
+        await db.query("DELETE FROM users WHERE user_id = $1", [id]);
+
+        res.json({ message: "Utilisateur supprimé avec succès" });
+    } catch (error) {
+        console.error("Erreur lors de la suppression de l'utilisateur", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+const getUser = async (req, res) => {
+    console.log("TETS");
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: "L'ID fourni est invalide." });
     }
 
-    const user = result.rows[0];
+    try {
+        const result = await db.query(
+            "SELECT * FROM users WHERE user_id = $1",
+            [id]
+        );
 
-    const passwordMatch = await bcrypt.compare(password, user.user_password); 
+        if (result.rows.length === 0) {
+            return res
+                .status(404)
+                .json({ error: "L'utilisateur n'existe pas" });
+        }
 
-    if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid username or password' });
+        const user = result.rows[0];
+        // Pour des raisons de sécurité, vous pourriez vouloir exclure certains champs comme le mot de passe
+        const { user_password, ...userWithoutPassword } = user;
+
+        res.json(userWithoutPassword);
+    } catch (error) {
+        console.error("Erreur lors de la récupération de l'utilisateur", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-
-    res.json({ message: 'Login successful' });
-  } catch (error) {
-    console.error('Error during login', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
 };
 
 module.exports = {
-  getAllUsers,
-  getAllAdmins,
-  createUser,
-  loginUser,
+    getAllUsers,
+    getAllAdmins,
+    updateUser,
+    deleteUser,
+    getUser,
 };

@@ -50,7 +50,7 @@ CREATE TABLE items (
 );
 
 CREATE TABLE inventory (
-    inventory_id SERIAL PRIMARY KEY,
+    inventory_id SERIAL PRIMARY KEY
 );
 
 CREATE TABLE inventory_items (
@@ -72,7 +72,7 @@ CREATE TABLE events (
 );
 
 CREATE TABLE pnj (
-    pnj_id SERIAL PRIMARY KEY,
+    pnj_id SERIAL PRIMARY KEY
     -- Ajoutez d'autres colonnes pour décrire le PNJ si nécessaire
 );
 

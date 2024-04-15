@@ -1,8 +1,8 @@
 // Exemple de modèle Sequelize pour un utilisateur
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+const { DataTypes } = require("sequelize");
+const sequelize = require("../db");
 
-const User = sequelize.define('User', {
+const User = sequelize.define("User", {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
